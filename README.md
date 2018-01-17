@@ -2,6 +2,13 @@
 
 This is a log of simple hacks for the cheap m1x. For now, this is only about to bring wifi up without using the app, setting the correct time(-zone) and installing an ssh server in place for the shipped telnetd.
 
+Out of the box, this cam features:
+- open telnet access as root (at least on this firmware `Linux goke 3.4.43-gk #56 PREEMPT Fri Sep 29 00:24:56 PDT 2006 armv6l GNU/Linux`)
+- rtsp access with user `admin`, pw `20160404` at port `554` and path `/onvif1` (respectively `/onvif2` with lower quality), e.g. `vlc rtsp://admin:20160404@<your-cams-ip>/onvif1`
+- ONVIF should be accessible at port 5000. Due to the android app tinycam, it is supposed  to use ONVIF `Profile S` (but as well as a lot of other people, I couldn't get it to work in other software). I have dumped some network traffic between tinycam and the cam but didn't had the time to investigate that so far.
+
+Of course: Everything at your own risk here…
+
 
 ## Setup
 
