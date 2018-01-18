@@ -1,13 +1,13 @@
 # DIGOO DG-M1X hacks
 
-This is a log of simple hacks for the cheap m1x. For now, this is only about to bring wifi up without using the app, setting the correct time(-zone) and installing an ssh server in place for the shipped telnetd.
+This is a log of simple hacks for the cheap, linux driven, Digoo DG-M1X. For now, this is only about to bring wifi up without using the app, setting the correct time(-zone) and installing an ssh server in place for the shipped telnetd. The api of the pan-tilt-zoom service could also be reverse engineered.
 
 Out of the box, this cam "features":
 - open telnet access as root (at least on this firmware `Linux goke 3.4.43-gk #56 PREEMPT Fri Sep 29 00:24:56 PDT 2006 armv6l GNU/Linux`)
 - ONVIF should be accessible at port 5000. Due to the android app tinyCam Monitor, it is supposed to use ONVIF `Profile S` (but as well as a lot of other people, I couldn't get it to work in other software). 
-- rtsp access with user `admin`, pw `20160404` at port `554` and path `/onvif1` (respectively `/onvif2` with lower quality), e.g. `vlc rtsp://admin:20160404@<your-cams-ip>/onvif1`
+- rtsp access with `user: admin`, `pw: 20160404` at `port: 554` and `path: /onvif1` (respectively `/onvif2` with lower quality), e.g. `vlc rtsp://admin:20160404@<your-cams-ip>/onvif1`
 
-Using these rtsp parameters, I could get it to manually work in every software I tried so far, except out of the box PTZ (e.g. [Synology Surveillance Station](https://www.synology.com/de-de/surveillance), [Shinobi](https://github.com/ShinobiCCTV/Shinobi) or [Home Assistant](https://home-assistant.io/)).
+Using these rtsp parameters, I could get it to setup manually in every software I tried so far, except out of the box PTZ (e.g. [Synology Surveillance Station](https://www.synology.com/de-de/surveillance), [Shinobi](https://github.com/ShinobiCCTV/Shinobi) or [Home Assistant](https://home-assistant.io/)).
 
 Of course: Everything at your own risk here…
 
@@ -28,9 +28,9 @@ ctrl_interface=/etc/Wireless
 
 Reboot and the cam should be connected to your network.
 
-To replace telnet with ssh, copy all files of `npc` to `/npc` on your cam. You can do this e.g. using wget
+To replace telnet with ssh, copy all files of `npc` to `/npc` on your cam (TODO, please have a closer look on what you are doing here, this is not failsafe atm). You can do this e.g. using wget
 (the wget embedded in busybox is not capable of https/tls) or by inserting a sd card (not tested).
-Thx thomas (https://github.com/ant-thomas/zsgx1hacks) for pre-compiling dropbearmulti.
+Thx thomas (https://github.com/ant-thomas/zsgx1hacks) for pre-compiling dropbearmulti!
 
 Generate your own password hash with `openssl passwd -1` (follow the prompt) and add it to `do.sh`
 For a public key authentication to work, add your public key(s) in `npc/root-home/.ssh/authorized_keys`
@@ -119,7 +119,7 @@ And the plain xml body:
 ```
 Specification: https://www.onvif.org/ver20/ptz/wsdl/ptz.wsdl
 
-Table of possible movements
+Table of possible movements (see [PanTilt tag](ptz_request.xml#L26))
 
 | x    | y    | Action            |
 |------|------|-------------------|
@@ -129,6 +129,9 @@ Table of possible movements
 | -1.0 | 0.0  | move to the left  |
 
 
+## Software
+
+The Digoo DG-M1Q inspected by e.g, [kfowlks]](https://github.com/kfowlks/DG-M1Q) and [yuvadm](https://github.com/yuvadm/DG-M1Q) _seems_ to run a similar (if not the same) software than the m1x. Find dmesg, pictures, serial logs, etc. there.
 
 
 ## TODO 
