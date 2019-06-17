@@ -1,6 +1,6 @@
 # DIGOO DG-M1X hacks
 
-This is a log of simple hacks for the cheap, linux driven, Digoo DG-M1X. For now, this is only about to bring wifi up without using the app, setting the correct time(-zone) and installing an ssh server in place for the shipped telnetd. The APi of the pan-tilt-zoom (ONVIF) service could also be reverse engineered.
+This is a log of simple hacks for the cheap, linux driven, Digoo DG-M1X. For now, this is only about to bring wifi up without using the app, setting the correct time(-zone) and installing an ssh server in place for the shipped telnetd. The API of the pan-tilt-zoom (ONVIF) service could also be reverse engineered.
 
 Out of the box, this cam "features":
 - open telnet access as root (at least on this firmware `Linux goke 3.4.43-gk #56 PREEMPT Fri Sep 29 00:24:56 PDT 2006 armv6l GNU/Linux`)
@@ -16,7 +16,8 @@ Of course: Everything at your own risk here…
 
 First of all, make sure to disable internet access for the cam! (e.g. using your fritzbox parental controls or iptables of your router)
 
-To setup the wifi of your m1x, you may simply telnet to the cam as root (no password) and edit `/rom/wpa_supplicant0.conf`:
+To setup the wifi of your m1x, you may simply telnet to the cam as root (no password) and edit `/rom/wpa_supplicant0.conf`
+For the inital connection I used an ethernet cable..
 
 ```
 ctrl_interface=/etc/Wireless  
