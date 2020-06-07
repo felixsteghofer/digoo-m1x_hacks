@@ -6,8 +6,11 @@ Out of the box, this cam "features":
 - open telnet access as root (at least on this firmware `Linux goke 3.4.43-gk #56 PREEMPT Fri Sep 29 00:24:56 PDT 2006 armv6l GNU/Linux`)
 - ONVIF accessible at port 5000. Due to the android app tinyCam Monitor, it is supposed to use ONVIF `Profile S` (but as well as a lot of other people, I couldn't get it to work in other software). 
 - rtsp access with `user: admin`, `pw: 20160404` at `port: 554` and `path: /onvif1` (respectively `/onvif2` with lower quality), e.g. `vlc rtsp://admin:20160404@<your-cams-ip>/onvif1`
+- PTZ control, through ONVIF XML commands, such as the ones proposed below.
 
-Using these rtsp parameters, I could get it to setup manually in every software I tried so far, except out of the box PTZ (e.g. [Synology Surveillance Station](https://www.synology.com/de-de/surveillance), [Shinobi](https://github.com/ShinobiCCTV/Shinobi) or [Home Assistant](https://home-assistant.io/)).
+Using these rtsp parameters, I could get it to setup manually in every software I tried so far. 
+
+For PTZ support on Home Assistant, check this tutorial: https://community.home-assistant.io/t/digoo-dg-m1x-working-a-sub-30-camera/21397/39?u=redalert
 
 Of course: Everything at your own risk here…
 
